@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Text, View, TouchableOpacity } from "react-native";
 
 import { Entypo } from "@expo/vector-icons";
-import { Button } from "native-base";
+import { Button, Header, Left, Right, Body, Title } from "native-base";
 
 let itemArray = new Array(9).fill("empty");
 
@@ -22,6 +22,10 @@ export default class App extends React.Component {
       this.setState({ isCross: !itemArray[itemNumber] }, () => {});
     }
     this.winGame();
+    if (this.state.winMessage !== "") {
+      Alert.alert(this.state.winMessage);
+      this.resetGame();
+    }
   };
 
   chooseItemIcon = itemNumber => {
@@ -117,17 +121,184 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Tic Tac Toe</Text>
+        <Header>
+          <Left />
+          <Body>
+            <Title>CConverter</Title>
+          </Body>
+          <Right />
+        </Header>
+        <View style={styles.grid}>
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(0);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(0)}
+                  size={50}
+                  color={this.chooseItemColor(0)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(1);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(1)}
+                  size={50}
+                  color={this.chooseItemColor(1)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(2);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(2)}
+                  size={50}
+                  color={this.chooseItemColor(2)}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(3);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(3)}
+                  size={50}
+                  color={this.chooseItemColor(3)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(4);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(4)}
+                  size={50}
+                  color={this.chooseItemColor(4)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(5);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(5)}
+                  size={50}
+                  color={this.chooseItemColor(5)}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(6);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(6)}
+                  size={50}
+                  color={this.chooseItemColor(6)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(7);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(7)}
+                  size={50}
+                  color={this.chooseItemColor(7)}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.item}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.drawItem(8);
+                }}
+              >
+                <Entypo
+                  name={this.chooseItemIcon(8)}
+                  size={50}
+                  color={this.chooseItemColor(8)}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
+        <Button full rounded primary style={styles.buttonStyles}>
+          <Text style={styles.buttonText} onPress={this.resetGame}>
+            Reset Game
+          </Text>
+        </Button>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
+  },
+  grid: {
+    marginTop: 60,
     alignItems: "center",
     justifyContent: "center"
+  },
+  row: {
+    flexDirection: "row"
+  },
+  item: {
+    borderWidth: 2,
+    borderColor: "#000",
+    padding: 30
+  },
+  winMessage: {
+    fontSize: 30,
+    padding: 15,
+    fontWeight: "bold"
+  },
+  buttonStyles: {
+    margin: 20,
+    padding: 10
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold"
   }
-});
+};
