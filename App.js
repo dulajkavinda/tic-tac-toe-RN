@@ -124,7 +124,7 @@ export default class App extends React.Component {
         <Header>
           <Left />
           <Body>
-            <Title>CConverter</Title>
+            <Title>Tic Tac Toe</Title>
           </Body>
           <Right />
         </Header>
